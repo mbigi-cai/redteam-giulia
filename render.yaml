@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: redteam-giulia
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT
+    envVars:
+      - key: BASIC_AUTH_USER
+        sync: false        # impostala nel pannello Render
+      - key: BASIC_AUTH_PASSWORD
+        sync: false        # impostala nel pannello Render (segreta, non nel repo)
